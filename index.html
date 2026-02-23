@@ -674,8 +674,8 @@
     setLoading(true);
 
     try {
-      // بيبعت للـ backend بتاعنا — الـ API Key محفوظ هناك بأمان
-      const response = await fetch('/api/translate', {
+      // ✅ التعديل: بيبعت على Vercel مش GitHub Pages
+      const response = await fetch('https://boda503.vercel.app/api/translate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, fromLang, toLang, francoMode })
