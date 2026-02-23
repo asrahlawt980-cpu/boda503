@@ -565,7 +565,7 @@
 
   <div class="error-msg" id="errorMsg"></div>
 
-  <button class="translate-btn" onclick="translate()" id="translateBtn">
+  <button class="translate-btn" onclick="doTranslate()" id="translateBtn">
     🌐 ترجم دلوقتي &nbsp;<small style="opacity:0.7;font-size:0.8rem">(Ctrl+Enter)</small>
   </button>
 </div>
@@ -663,7 +663,7 @@
     speechSynthesis.speak(utter);
   }
 
-  async function translate() {
+  async function doTranslate() {
     const text = document.getElementById('inputText').value.trim();
     const fromLang = document.getElementById('fromLang').value;
     const toLang = document.getElementById('toLang').value;
@@ -736,8 +736,8 @@
     setTimeout(() => t.classList.remove('show'), 2500);
   }
 
-  document.getElementById('inputText').addEventListener('keydown', e => {
-    if (e.ctrlKey && e.key === 'Enter') translate();
+ document.getElementById('inputText').addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 'Enter') doTranslate();
   });
 
   renderHistory();
