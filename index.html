@@ -36,6 +36,8 @@
     .lang-select-wrap label { font-size: 0.75rem; color: var(--muted); display: block; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px; }
     select { width: 100%; background: var(--card); color: var(--text); border: 1px solid var(--border); padding: 0.7rem 1rem; border-radius: 10px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; cursor: pointer; outline: none; }
     select:focus { border-color: var(--accent); }
+    select optgroup { background: var(--surface); color: var(--accent2); font-weight: 700; }
+    select option { background: var(--card); color: var(--text); }
     .swap-btn { background: var(--card); border: 1px solid var(--border); color: var(--accent2); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s; margin-top: 1.4rem; flex-shrink: 0; }
     .swap-btn:hover { background: var(--accent); color: white; transform: rotate(180deg); }
     .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -53,15 +55,6 @@
     .translate-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124,58,237,0.4); }
     .translate-btn:disabled { opacity: 0.6; cursor: wait; }
     .char-count { font-size: 0.72rem; color: var(--muted); }
-    .franco-toggle { display: flex; align-items: center; gap: 0.8rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 1.2rem; margin-bottom: 1rem; cursor: pointer; }
-    .toggle-switch { width: 44px; height: 24px; background: var(--muted); border-radius: 50px; position: relative; transition: background 0.3s; flex-shrink: 0; }
-    .toggle-switch.on { background: var(--accent3); }
-    .toggle-switch::after { content: ''; position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s; }
-    .toggle-switch.on::after { transform: translateX(-20px); }
-    .franco-label { flex: 1; }
-    .franco-label strong { display: block; font-size: 0.95rem; }
-    .franco-label small { color: var(--muted); font-size: 0.78rem; }
-    .franco-badge { background: rgba(245,158,11,0.2); color: var(--accent3); font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 700; }
     .history-section { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 3rem; }
     .section-title { font-size: 1rem; color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
     .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
@@ -78,8 +71,6 @@
     .error-msg { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; padding: 0.8rem 1rem; border-radius: 10px; font-size: 0.9rem; margin-top: 0.8rem; display: none; }
     footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.82rem; }
     footer a { color: var(--accent2); text-decoration: none; }
-    .lang-chip { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; }
-    .lang-chip:hover, .lang-chip.active { background: var(--accent); border-color: var(--accent); color: white; }
   </style>
 </head>
 <body>
@@ -95,75 +86,103 @@
 </div>
 
 <div class="translator">
-  \
-  <option value="franco">🔤 بوده</option>
-
   <div class="lang-bar">
     <div class="lang-select-wrap">
       <label>من</label>
       <select id="fromLang">
-        <option value="auto">🔍 اكتشاف تلقائي</option>
-        <option value="ar" selected>🇸🇦 عربي</option>
-        <option value="en">🇬🇧 إنجليزي</option>
-        <option value="fr">🇫🇷 فرنسي</option>
-        <option value="de">🇩🇪 ألماني</option>
-        <option value="es">🇪🇸 إسباني</option>
-        <option value="it">🇮🇹 إيطالي</option>
-        <option value="tr">🇹🇷 تركي</option>
-        <option value="ru">🇷🇺 روسي</option>
-        <option value="zh">🇨🇳 صيني</option>
-        <option value="ja">🇯🇵 ياباني</option>
-        <option value="ko">🇰🇷 كوري</option>
-        <option value="pt">🇧🇷 برتغالي</option>
-        <option value="hi">🇮🇳 هندي</option>
-        <option value="he">🇮🇱 عبري</option>
-        <option value="id">🇮🇩 إندونيسي</option>
-        <option value="nl">🇳🇱 هولندي</option>
-        <option value="pl">🇵🇱 بولندي</option>
-        <option value="sv">🇸🇪 سويدي</option>
-        <option value="fa">🇮🇷 فارسي</option>
-        <option value="ur">🇵🇰 أردو</option>
+        <optgroup label="⭐ الأكثر استخداماً">
+          <option value="auto">🔍 اكتشاف تلقائي</option>
+          <option value="ar" selected>🇸🇦 عربي</option>
+          <option value="franco">🔤 فرانكو عربي</option>
+          <option value="en">🇬🇧 إنجليزي</option>
+          <option value="fr">🇫🇷 فرنسي</option>
+          <option value="de">🇩🇪 ألماني</option>
+          <option value="es">🇪🇸 إسباني</option>
+          <option value="tr">🇹🇷 تركي</option>
+          <option value="ru">🇷🇺 روسي</option>
+        </optgroup>
+        <optgroup label="🌍 الشرق الأوسط">
+          <option value="he">🇮🇱 عبري</option>
+          <option value="fa">🇮🇷 فارسي</option>
+          <option value="ur">🇵🇰 أردو</option>
+        </optgroup>
+        <optgroup label="🌏 آسيا">
+          <option value="zh">🇨🇳 صيني</option>
+          <option value="ja">🇯🇵 ياباني</option>
+          <option value="ko">🇰🇷 كوري</option>
+          <option value="hi">🇮🇳 هندي</option>
+          <option value="bn">🇧🇩 بنغالي</option>
+          <option value="id">🇮🇩 إندونيسي</option>
+          <option value="ms">🇲🇾 ملايو</option>
+          <option value="th">🇹🇭 تايلاندي</option>
+          <option value="vi">🇻🇳 فيتنامي</option>
+          <option value="tl">🇵🇭 فلبيني</option>
+        </optgroup>
+        <optgroup label="🌍 أوروبا">
+          <option value="it">🇮🇹 إيطالي</option>
+          <option value="pt">🇧🇷 برتغالي</option>
+          <option value="nl">🇳🇱 هولندي</option>
+          <option value="pl">🇵🇱 بولندي</option>
+          <option value="sv">🇸🇪 سويدي</option>
+          <option value="no">🇳🇴 نرويجي</option>
+          <option value="da">🇩🇰 دنماركي</option>
+          <option value="fi">🇫🇮 فنلندي</option>
+          <option value="el">🇬🇷 يوناني</option>
+          <option value="cs">🇨🇿 تشيكي</option>
+          <option value="hu">🇭🇺 مجري</option>
+          <option value="ro">🇷🇴 روماني</option>
+          <option value="uk">🇺🇦 أوكراني</option>
+        </optgroup>
       </select>
     </div>
     <button class="swap-btn" onclick="swapLangs()">⇄</button>
     <div class="lang-select-wrap">
       <label>إلى</label>
       <select id="toLang">
-        <option value="en" selected>🇬🇧 إنجليزي</option>
-        <option value="ar">🇸🇦 عربي</option>
-        <option value="fr">🇫🇷 فرنسي</option>
-        <option value="de">🇩🇪 ألماني</option>
-        <option value="es">🇪🇸 إسباني</option>
-        <option value="it">🇮🇹 إيطالي</option>
-        <option value="tr">🇹🇷 تركي</option>
-        <option value="ru">🇷🇺 روسي</option>
-        <option value="zh">🇨🇳 صيني</option>
-        <option value="ja">🇯🇵 ياباني</option>
-        <option value="ko">🇰🇷 كوري</option>
-        <option value="pt">🇧🇷 برتغالي</option>
-        <option value="hi">🇮🇳 هندي</option>
-        <option value="he">🇮🇱 عبري</option>
-        <option value="id">🇮🇩 إندونيسي</option>
-        <option value="nl">🇳🇱 هولندي</option>
-        <option value="pl">🇵🇱 بولندي</option>
-        <option value="sv">🇸🇪 سويدي</option>
-        <option value="fa">🇮🇷 فارسي</option>
-        <option value="ur">🇵🇰 أردو</option>
+        <optgroup label="⭐ الأكثر استخداماً">
+          <option value="en" selected>🇬🇧 إنجليزي</option>
+          <option value="franco">🔤 فرانكو عربي</option>
+          <option value="ar">🇸🇦 عربي</option>
+          <option value="fr">🇫🇷 فرنسي</option>
+          <option value="de">🇩🇪 ألماني</option>
+          <option value="es">🇪🇸 إسباني</option>
+          <option value="tr">🇹🇷 تركي</option>
+          <option value="ru">🇷🇺 روسي</option>
+        </optgroup>
+        <optgroup label="🌍 الشرق الأوسط">
+          <option value="he">🇮🇱 عبري</option>
+          <option value="fa">🇮🇷 فارسي</option>
+          <option value="ur">🇵🇰 أردو</option>
+        </optgroup>
+        <optgroup label="🌏 آسيا">
+          <option value="zh">🇨🇳 صيني</option>
+          <option value="ja">🇯🇵 ياباني</option>
+          <option value="ko">🇰🇷 كوري</option>
+          <option value="hi">🇮🇳 هندي</option>
+          <option value="bn">🇧🇩 بنغالي</option>
+          <option value="id">🇮🇩 إندونيسي</option>
+          <option value="ms">🇲🇾 ملايو</option>
+          <option value="th">🇹🇭 تايلاندي</option>
+          <option value="vi">🇻🇳 فيتنامي</option>
+          <option value="tl">🇵🇭 فلبيني</option>
+        </optgroup>
+        <optgroup label="🌍 أوروبا">
+          <option value="it">🇮🇹 إيطالي</option>
+          <option value="pt">🇧🇷 برتغالي</option>
+          <option value="nl">🇳🇱 هولندي</option>
+          <option value="pl">🇵🇱 بولندي</option>
+          <option value="sv">🇸🇪 سويدي</option>
+          <option value="no">🇳🇴 نرويجي</option>
+          <option value="da">🇩🇰 دنماركي</option>
+          <option value="fi">🇫🇮 فنلندي</option>
+          <option value="el">🇬🇷 يوناني</option>
+          <option value="cs">🇨🇿 تشيكي</option>
+          <option value="hu">🇭🇺 مجري</option>
+          <option value="ro">🇷🇴 روماني</option>
+          <option value="uk">🇺🇦 أوكراني</option>
+        </optgroup>
       </select>
     </div>
-  </div>
-
-  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;">
-    <span class="lang-chip" onclick="setToLang('en',this)">إنجليزي</span>
-    <span class="lang-chip" onclick="setToLang('fr',this)">فرنسي</span>
-    <span class="lang-chip" onclick="setToLang('de',this)">ألماني</span>
-    <span class="lang-chip" onclick="setToLang('tr',this)">تركي</span>
-    <span class="lang-chip" onclick="setToLang('es',this)">إسباني</span>
-    <span class="lang-chip" onclick="setToLang('ru',this)">روسي</span>
-    <span class="lang-chip" onclick="setToLang('ja',this)">ياباني</span>
-    <span class="lang-chip" onclick="setToLang('ko',this)">كوري</span>
-    <span class="lang-chip" onclick="setToLang('zh',this)">صيني</span>
-    <span class="lang-chip" onclick="setToLang('hi',this)">هندي</span>
   </div>
 
   <div class="panels">
@@ -172,7 +191,7 @@
         <span class="lang-name" id="fromLangName">عربي</span>
         <span class="char-count" id="charCount">0 / 5000</span>
       </div>
-      <textarea id="inputText" placeholder="اكتب هنا... مثلاً: ana mabsooot awi" maxlength="5000" oninput="updateCharCount()"></textarea>
+      <textarea id="inputText" placeholder="اكتب هنا..." maxlength="5000" oninput="updateCharCount()"></textarea>
       <div class="panel-footer">
         <button class="icon-btn" onclick="clearInput()">🗑 مسح</button>
         <button class="icon-btn" onclick="pasteText()">📋 لصق</button>
@@ -181,7 +200,6 @@
     <div class="panel output-panel">
       <div class="panel-header">
         <span class="lang-name" id="toLangName">إنجليزي</span>
-        <span style="font-size:0.72rem;color:var(--accent3);" id="francoIndicator"></span>
       </div>
       <textarea id="outputText" readonly placeholder="الترجمة هتظهر هنا..."></textarea>
       <div class="panel-footer">
@@ -213,41 +231,68 @@
 
 <footer>
   صُنع بـ ❤️ بواسطة <strong>Boda</strong> &nbsp;|&nbsp;
-  Powered by <a href="https://anthropic.com" target="_blank">Claude AI</a>
-  &nbsp;|&nbsp;
-  <a href="https://github.com" target="_blank">GitHub</a>
+  Powered by <a href="https://mymemory.translated.net" target="_blank">MyMemory API</a>
 </footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
   const LANGUAGES = {
-    'ar':'عربي','en':'إنجليزي','fr':'فرنسي','de':'ألماني','es':'إسباني',
-    'it':'إيطالي','tr':'تركي','ru':'روسي','zh':'صيني','ja':'ياباني',
-    'ko':'كوري','pt':'برتغالي','hi':'هندي','he':'عبري','id':'إندونيسي',
-    'nl':'هولندي','pl':'بولندي','sv':'سويدي','fa':'فارسي','ur':'أردو',
+    'ar':'عربي','franco':'فرانكو عربي','en':'إنجليزي','fr':'فرنسي','de':'ألماني',
+    'es':'إسباني','it':'إيطالي','tr':'تركي','ru':'روسي','zh':'صيني','ja':'ياباني',
+    'ko':'كوري','pt':'برتغالي','hi':'هندي','he':'عبري','id':'إندونيسي','nl':'هولندي',
+    'pl':'بولندي','sv':'سويدي','fa':'فارسي','ur':'أردو','bn':'بنغالي','ms':'ملايو',
+    'th':'تايلاندي','vi':'فيتنامي','tl':'فلبيني','no':'نرويجي','da':'دنماركي',
+    'fi':'فنلندي','el':'يوناني','cs':'تشيكي','hu':'مجري','ro':'روماني','uk':'أوكراني',
     'auto':'اكتشاف تلقائي'
   };
 
-  let francoMode = false;
-  let historyData = JSON.parse(localStorage.getItem('boda_history') || '[]');
-
-  function toggleFranco() {
-    francoMode = !francoMode;
-    document.getElementById('francoSwitch').classList.toggle('on', francoMode);
-    document.getElementById('francoIndicator').textContent = francoMode ? '🔤 فرانكو ON' : '';
+  // تحويل عربي لفرانكو
+  function arabicToFranco(text) {
+    const map = {
+      'ع':'3','ء':'2','أ':'2','إ':'2','آ':'2','ئ':'2','ؤ':'2',
+      'ح':'7','خ':'5','غ':'8','ق':'9',
+      'ا':'a','ب':'b','ت':'t','ث':'th','ج':'g','د':'d','ذ':'z',
+      'ر':'r','ز':'z','س':'s','ش':'sh','ص':'s','ض':'d','ط':'t',
+      'ظ':'z','ف':'f','ك':'k','ل':'l','م':'m','ن':'n','ه':'h',
+      'و':'w','ي':'y','ى':'a','ة':'a','لا':'la',
+      'َ':'a','ُ':'o','ِ':'e','ّ':'','ً':'an','ٌ':'on','ٍ':'en','ْ':''
+    };
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] === 'ل' && text[i+1] === 'ا') { result += 'la'; i++; continue; }
+      result += map[text[i]] !== undefined ? map[text[i]] : text[i];
+    }
+    return result;
   }
+
+  // تحويل فرانكو لعربي
+  function francoToArabic(text) {
+    const map = [
+      ['2a','أا'],['2o','أو'],['2','أ'],
+      ['3a','عا'],['3o','عو'],['3','ع'],
+      ['7a','حا'],['7o','حو'],['7','ح'],
+      ['5a','خا'],['5o','خو'],['5','خ'],
+      ['8a','غا'],['8o','غو'],['8','غ'],
+      ['9a','قا'],['9o','قو'],['9','ق'],
+      ['sh','ش'],['th','ث'],['kh','خ'],['gh','غ'],['ph','ف'],
+      ['a','ا'],['b','ب'],['t','ت'],['g','ج'],['d','د'],
+      ['r','ر'],['z','ز'],['s','س'],['f','ف'],['k','ك'],
+      ['l','ل'],['m','م'],['n','ن'],['h','ه'],['w','و'],['y','ي'],
+      ['e','ي'],['o','و'],['i','ي'],
+    ];
+    let result = text.toLowerCase();
+    for (const [franco, arabic] of map) {
+      result = result.split(franco).join(arabic);
+    }
+    return result;
+  }
+
+  let historyData = JSON.parse(localStorage.getItem('boda_history') || '[]');
 
   function updateCharCount() {
     const len = document.getElementById('inputText').value.length;
     document.getElementById('charCount').textContent = len + ' / 5000';
-  }
-
-  function setToLang(code, el) {
-    document.getElementById('toLang').value = code;
-    document.getElementById('toLangName').textContent = LANGUAGES[code];
-    document.querySelectorAll('.lang-chip').forEach(c => c.classList.remove('active'));
-    if(el) el.classList.add('active');
   }
 
   function swapLangs() {
@@ -305,30 +350,37 @@
 
     if (!text) return showToast('اكتب حاجة الأول!');
     errorEl.style.display = 'none';
+
+    // لو الترجمة بالفرانكو فقط (بدون API)
+    if (fromLang === 'ar' && toLang === 'franco') {
+      document.getElementById('outputText').value = arabicToFranco(text);
+      saveHistory(text, arabicToFranco(text), fromLang, toLang);
+      return showToast('✅ تمت الترجمة!');
+    }
+
+    if (fromLang === 'franco' && toLang === 'ar') {
+      document.getElementById('outputText').value = francoToArabic(text);
+      saveHistory(text, francoToArabic(text), fromLang, toLang);
+      return showToast('✅ تمت الترجمة!');
+    }
+
+    // باقي اللغات عن طريق MyMemory API
     setLoading(true);
-
     try {
-      const response = await fetch('https://boda503.vercel.app/api/translate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, fromLang, toLang, francoMode })
-      });
+      let actualFrom = fromLang === 'franco' ? 'ar' : fromLang === 'auto' ? 'ar' : fromLang;
+      let actualTo = toLang === 'franco' ? 'ar' : toLang;
 
+      const response = await fetch(
+        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${actualFrom}|${actualTo}`
+      );
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'فشل الاتصال');
+      if (data.responseStatus !== 200) throw new Error('فشلت الترجمة');
 
-      document.getElementById('outputText').value = data.translation;
+      let translation = data.responseData.translatedText;
+      if (toLang === 'franco') translation = arabicToFranco(translation);
 
-      const item = {
-        from: LANGUAGES[fromLang] || fromLang,
-        to: LANGUAGES[toLang] || toLang,
-        original: text,
-        translation: data.translation
-      };
-      historyData.unshift(item);
-      if (historyData.length > 20) historyData.pop();
-      localStorage.setItem('boda_history', JSON.stringify(historyData));
-      renderHistory();
+      document.getElementById('outputText').value = translation;
+      saveHistory(text, translation, fromLang, toLang);
       showToast('✅ تمت الترجمة!');
 
     } catch(e) {
@@ -337,6 +389,18 @@
     } finally {
       setLoading(false);
     }
+  }
+
+  function saveHistory(original, translation, fromLang, toLang) {
+    const item = {
+      from: LANGUAGES[fromLang] || fromLang,
+      to: LANGUAGES[toLang] || toLang,
+      original, translation
+    };
+    historyData.unshift(item);
+    if (historyData.length > 20) historyData.pop();
+    localStorage.setItem('boda_history', JSON.stringify(historyData));
+    renderHistory();
   }
 
   function setLoading(state) {
